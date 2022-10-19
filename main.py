@@ -43,10 +43,18 @@ class Scrapper:
             status = True
         return status
 
-    def getText(self):
+    def scrollAndGetText(self):
         """
         Get url text
         """
+        page_height = self.driver.execute_script("return document.documentElement.scrollHeight")
+        while True:
+            self.driver.execute_script("window.scrollTo(0,document.documentElement.scrollHeight);")
+            new_height = self.driver.execute_script("return document.documentElement.scrollHeight")
+            if new_height == page_height:
+                break
+            page_height = new_height
+
         status = False
         soup = BeautifulSoup(self.page_source, "html.parser")
         for element in soup(["script", "style"]):  # убираем скрипты и стиль
@@ -71,7 +79,7 @@ if __name__ == "__main__":
     scrapper = Scrapper()
     if scrapper.createDriver():
         if scrapper.input_url():
-            if scrapper.getText():
+            if scrapper.scrollAndGetText():
                 scrapper.saveTextToFile('URL-text.txt')
             else:
                 print('Error while getting url text')
