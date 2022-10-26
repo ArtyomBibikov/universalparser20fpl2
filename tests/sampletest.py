@@ -14,7 +14,7 @@ class ScrapperTest(unittest.TestCase):
         message = "Error occurred while setting url"
         self.assertTrue(scrapper.set_url(url), message)
         message = "Error occurred while getting text"
-        self.assertTrue(scrapper.getText(), message)
+        self.assertTrue(scrapper.scrollAndGetText(), message)
         key = "Thank you for your last letter"
         container = str(scrapper.text)
         message = "Error in scrapping the text"
