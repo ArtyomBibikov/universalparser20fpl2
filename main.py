@@ -1,3 +1,5 @@
+"""The selenium library contains various tools for scanning and parsing webpages
+BeautifulSoup parses the raw text data and only takes what is relevant for our study"""
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -16,7 +18,7 @@ class Scrapper:
         self.page_source = None
         self.text = None
 
-    def createDriver(self):
+    def create_driver(self):
         """
         Create Selenium Web Driver
         """
@@ -59,7 +61,7 @@ class Scrapper:
 
         return status
 
-    def scrollAndGetText(self):
+    def scroll_and_get_text(self):
         """
         Get url text
         """
@@ -70,7 +72,6 @@ class Scrapper:
             if new_height == page_height:
                 break
             page_height = new_height
-            
         status = False
         soup = BeautifulSoup(self.page_source, "html.parser")
         for element in soup(["script", "style"]):  # убираем скрипты и стиль
@@ -82,23 +83,22 @@ class Scrapper:
             status = True
         return status
 
-    def saveTextToFile(self, filename):
+    def save_text_to_file(self, filename):
         """
         Save text to file
         """
-        fl = open(filename, 'wb')
-        fl.write(self.text)
-        fl.close()
+        with(open(filename, 'wb')) as output_file:
+            output_file.write(self.text)
+            output_file.close()
 
-if __name__ == "__main__":
-    scrapper = Scrapper()
-    if scrapper.createDriver():
-        if scrapper.input_url():
-            if scrapper.getText():
-                scrapper.saveTextToFile('URL-text.txt')
-            else:
-                print('Error while getting url text')
+scrapper = Scrapper()
+if scrapper.create_driver():
+    if scrapper.input_url():
+        if scrapper.scroll_and_get_text():
+            scrapper.save_text_to_file('URL-text.txt')
         else:
-            print('Error while input URL')
+            print('Error while getting url text')
     else:
-        print('Cannot create scrapper')
+        print('Error while input URL')
+else:
+    print('Cannot create scrapper')

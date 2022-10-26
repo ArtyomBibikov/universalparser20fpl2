@@ -1,8 +1,11 @@
+"""importing libraries for tests"""
 import unittest
-
-from scrapper import Scrapper
+from main import Scrapper
 
 class ScrapperTest(unittest.TestCase):
+    """
+    scrapper test
+    """
     def test_ideal(self):
         """
         ideal case
@@ -10,11 +13,11 @@ class ScrapperTest(unittest.TestCase):
         url = "https://www.esl-lounge.com/level1b/lev1bgapfillread.php"
         scrapper = Scrapper()
         message = "Error occurred while creating driver"
-        self.assertTrue(scrapper.createDriver(), message)
+        self.assertTrue(scrapper.create_driver(), message)
         message = "Error occurred while setting url"
         self.assertTrue(scrapper.set_url(url), message)
         message = "Error occurred while getting text"
-        self.assertTrue(scrapper.scrollAndGetText(), message)
+        self.assertTrue(scrapper.scroll_and_get_text(), message)
         key = "Thank you for your last letter"
         container = str(scrapper.text)
         message = "Error in scrapping the text"
