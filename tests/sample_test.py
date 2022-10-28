@@ -21,7 +21,7 @@ class ScrapperTest(unittest.TestCase):
         message = "Error occurred while getting text"
         self.assertTrue(scrapper._scroll_and_get_text(), message)
         key = "Thank you for your last letter"
-        container = str(scrapper.text)
+        container = str(scrapper._text)
         message = "Error in scrapping the text"
         self.assertIn(key, container, message)
 
