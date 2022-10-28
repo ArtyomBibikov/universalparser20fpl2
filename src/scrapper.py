@@ -31,6 +31,12 @@ class Scrapper:
             return True
         return False
 
+    def create_driver(self):
+        """
+        Create Selenium Web _driver. Public method
+        """
+        return self._create_driver()
+    
     def _input_url(self):
         """
         Input url
@@ -80,6 +86,18 @@ class Scrapper:
             status = True
         return status
 
+    def get_text(self):
+        """
+        Get text. Public method
+        """
+        return self._text
+    
+    def scroll_and_get_text(self):
+        """
+        Get url text. Public method
+        """
+        return self._scroll_and_get_text()
+    
     def _save_text_to_file(self, filename):
         """
         Save text to file
