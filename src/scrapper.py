@@ -91,7 +91,7 @@ class Scrapper:
         Get text. Public method
         """
         return self._text
-    
+
     def scroll_and_get_text(self):
         """
         Get url text. Public method
