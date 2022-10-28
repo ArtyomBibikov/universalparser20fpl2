@@ -123,6 +123,6 @@ class Scrapper:
     def validate_text(self):
         """validates url text"""
         if self._scroll_and_get_text():
-            self._save_text_to_file('URL-text.txt')
+            self._save_text_to_file('./output/URL-text.txt')
         else:
             print('Error while getting url text')

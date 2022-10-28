@@ -16,4 +16,4 @@ Output: A text file based on the desired webpage.
 
 * Launch main.py
 * When prompted, paste your desired URL into the terminal.
-* The 'URL-text.txt' file will be generated in the project's root folder.
+* The `URL-text.txt` file will be generated in the `output` folder.
