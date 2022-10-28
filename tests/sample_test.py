@@ -15,13 +15,13 @@ class ScrapperTest(unittest.TestCase):
         url = "https://www.esl-lounge.com/level1b/lev1bgapfillread.php"
         scrapper = Scrapper()
         message = "Error occurred while creating driver"
-        self.assertTrue(scrapper._create_driver(), message)
+        self.assertTrue(scrapper.create_driver(), message)
         message = "Error occurred while setting url"
         self.assertTrue(scrapper.set_url(url), message)
         message = "Error occurred while getting text"
-        self.assertTrue(scrapper._scroll_and_get_text(), message)
+        self.assertTrue(scrapper.scroll_and_get_text(), message)
         key = "Thank you for your last letter"
-        container = str(scrapper._text)
+        container = str(scrapper.get_text())
         message = "Error in scrapping the text"
         self.assertIn(key, container, message)
 
