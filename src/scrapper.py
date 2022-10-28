@@ -41,7 +41,7 @@ class Scrapper:
             self._driver.get(val)
             wait.until(EC.url_to_be(val))
             if self._driver.current_url == val:
-                self.page_source = self._driver.page_source
+                self._page_source = self._driver.page_source
                 return True
         return False
 
@@ -54,7 +54,7 @@ class Scrapper:
             self._driver.get(val)
             wait.until(EC.url_to_be(val))
             if self._driver.current_url == val:
-                self.page_source = self._driver.page_source
+                self._page_source = self._driver.page_source
                 return True
         return False
 
@@ -70,13 +70,13 @@ class Scrapper:
                 break
             page_height = new_height
         status = False
-        soup = BeautifulSoup(self.page_source, "html.parser")
+        soup = BeautifulSoup(self._page_source, "html.parser")
         for element in soup(["script", "style"]):  # убираем скрипты и стиль
             element.extract()
         strips = list(soup.stripped_strings)  # собираем весь текст в список
         text = '\n'.join(strips)
-        self.text = text.encode("utf-8")  # избавляемся от возможных ошибок
-        if len(self.text) > 0:
+        self._text = text.encode("utf-8")  # избавляемся от возможных ошибок
+        if len(self._text) > 0:
             status = True
         return status
 
@@ -85,7 +85,7 @@ class Scrapper:
         Save text to file
         """
         with(open(filename, 'wb')) as output_file:
-            output_file.write(self.text)
+            output_file.write(self._text)
             output_file.close()
 
     def validate_driver(self):
@@ -93,18 +93,18 @@ class Scrapper:
         if self._create_driver():
             pass
         else:
-            print('Cannot create scrapper')
+            raise Exception('Cannot create scrapper')
 
     def validate_input(self):
         """validates input"""
         if self._input_url():
             pass
         else:
-            print('Error while input URL')
+            raise Exception('Error while input URL')
 
     def validate_text(self):
         """validates url text"""
         if self._scroll_and_get_text():
             self._save_text_to_file('URL-text.txt')
         else:
-            print('Error while getting url text')
+            raise Exception('Error while getting url text')
