@@ -1,7 +1,7 @@
 # Universal Parser
 
 ## Description
-This project is a python-based universal parser that can pull text-based data from any website and store it in a .txt file.
+This project is a Python-based universal parser that can pull text-based data from any website and store it in a .txt file.
 ```
 Input: A URL. 
 Output: A text file based on the desired webpage.

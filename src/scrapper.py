@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import validators
-
+import pathlib
 
 class Scrapper:
     """
@@ -102,6 +102,8 @@ class Scrapper:
         """
         Save text to file
         """
+        p = pathlib.Path("output/")
+        p.mkdir(parents=True, exist_ok=True)
         with(open(filename, 'wb')) as output_file:
             output_file.write(self._text)
             output_file.close()
