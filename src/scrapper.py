@@ -93,18 +93,18 @@ class Scrapper:
         if self._create_driver():
             pass
         else:
-            raise Exception('Cannot create scrapper')
+            print('Cannot create scrapper')
 
     def validate_input(self):
         """validates input"""
         if self._input_url():
             pass
         else:
-            raise Exception('Error while input URL')
+            print('Error while input URL')
 
     def validate_text(self):
         """validates url text"""
         if self._scroll_and_get_text():
             self._save_text_to_file('URL-text.txt')
         else:
-            raise Exception('Error while getting url text')
+            print('Error while getting url text')
