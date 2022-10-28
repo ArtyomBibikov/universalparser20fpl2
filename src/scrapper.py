@@ -45,7 +45,7 @@ class Scrapper:
                 return True
         return False
 
-    def _set_url(self, val):
+    def set_url(self, val):
         """
         set url
         """
@@ -88,14 +88,23 @@ class Scrapper:
             output_file.write(self.text)
             output_file.close()
 
-    def validity(self):
+    def validate_driver(self):
+        """validates driver"""
         if self._create_driver():
-            if self._input_url():
-                if self._scroll_and_get_text():
-                    self._save_text_to_file('URL-text.txt')
-                else:
-                    print('Error while getting url text')
-            else:
-                print('Error while input URL')
+            pass
         else:
             print('Cannot create scrapper')
+
+    def validate_input(self):
+        """validates input"""
+        if self._input_url():
+            pass
+        else:
+            print('Error while input URL')
+
+    def validate_text(self):
+        """validates url text"""
+        if self._scroll_and_get_text():
+            self._save_text_to_file('URL-text.txt')
+        else:
+            print('Error while getting url text')
