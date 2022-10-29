@@ -3,6 +3,7 @@ BeautifulSoup parses the raw text data and only takes what is relevant for our s
 import pathlib
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
@@ -27,7 +28,8 @@ class Scrapper:
         options = Options()
         options.headless = True
         options.add_argument("--window-size=1280,720")
-        self._driver = webdriver.Chrome(r'./utils/chromedriver.exe', options=options)
+        driver_service = Service('./utils/chromedriver.exe')
+        self._driver = webdriver.Chrome(service=driver_service, options=options)
 
         if self._driver:
             return True
