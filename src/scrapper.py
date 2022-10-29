@@ -27,7 +27,7 @@ class Scrapper:
         options = Options()
         options.headless = True
         options.add_argument("--window-size=1280,720")
-        self._driver = webdriver.Chrome('./utils/chromedriver.exe', options=options)
+        self._driver = webdriver.Chrome(r'./utils/chromedriver.exe', options=options)
 
         if self._driver:
             return True
